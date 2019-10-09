@@ -1,7 +1,7 @@
 ## Goodreads Analysis
 
 
-This repository is dedicated to crawling and analyzing the data from social media [Goodreads](https://goodreads.com).
+This repository is dedicated to crawling and analyzing the data from social media [Goodreads](https://goodreads.com). Social Network analysis on the Users of the goodreads would provide us with a better understanding of the user's behavior in reading. 
 
 ### Crawling the Data
 
@@ -16,3 +16,5 @@ The user's ID is used to access the books he/she listed as **READ BOOKS**, and t
 The Only limitation in crawling data from Goodreads is time. The service doesn't let developers make requests in less than 1 seconds each time, this can be solved by running the code in parallel. Crawling 107,438 rows of Data (nearly 14,000 users) took 3 days. 
 
 ### Social Network Analysis on the Books and the Users
+
+To be added soon. 
