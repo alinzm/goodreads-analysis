@@ -13,7 +13,7 @@ The user's ID is used to access the books he/she listed as **READ BOOKS**, and t
 
 User profile CSV file: 
 
-- userid
+- Userid
 - Name
 - Gender
 - Location
@@ -26,15 +26,15 @@ User profile CSV file:
 
 User Books CSV file:
 
-- userid
-- book
+- Userid
+- Book
 - Publish_year
-- rating
-- rating_count
-- description
-- user_book_review
-- author
-- author_id
+- Rating
+- Rating_count
+- Description
+- User_book_review
+- Author
+- Author_id
 
 The Only limitation in crawling data from Goodreads is time. The service doesn't let developers make requests in less than 1 seconds each time, this can be solved by running the code in parallel. Crawling 1000 users data with this method takes almost 5 hours. 
 
