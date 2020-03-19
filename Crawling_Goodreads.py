@@ -28,18 +28,17 @@ import re
 import math
 import os.path
 
-#
+
 start = time.time()
 count = 1
-##
-###Select the Number of Users
+
+#Select the Number of Users
 
 number_of_users = 5
 
-##
-###introduce the chrome Driver --> Download your version from here:
-###https://chromedriver.chromium.org/downloads
-##
+
+#introduce the chrome Driver --> Download your version from here:
+#https://chromedriver.chromium.org/downloads
 options = Options()
 options.add_argument("--headless") # Runs Chrome in headless mode.
 options.add_argument('--no-sandbox') # Bypass OS security model
@@ -50,10 +49,6 @@ options.add_argument("--disable-extensions")
 driver = webdriver.Chrome(chrome_options=options, executable_path='/root/goodreads/chromedriver_linux')
 
 
-
-##
-##
-##
 pbar = tqdm(total = number_of_users)
 while count < number_of_users+1:
     
@@ -62,7 +57,7 @@ while count < number_of_users+1:
     #userid = 82076273
     
     
-#    #Get the Initial Data from User
+    #Get the Initial Data from User
     try:
         user_req = Request("https://www.goodreads.com/user/show/{}.xml?key=******API KEY*******".format(userid))
         user_response = urlopen(user_req)
@@ -72,8 +67,8 @@ while count < number_of_users+1:
         
         #Check if User has specific Number of Books in his(her) shelves
         if int(user_shelves_count) > 1: 
-#
-#            
+
+           
             user_name = user_tree.findall('.//name')[0].text
             user_gender = user_tree.findall('.//gender')[0].text
             user_location = user_tree.findall('.//location')[0].text
@@ -81,7 +76,7 @@ while count < number_of_users+1:
             user_about = user_tree.findall('.//about')[0].text
             user_image_url = user_tree.findall('.//image_url')[0].text
             
-#        
+        
             #Get the user Review and Rating Count by Scraping with soup and selenium
             driver.get('https://www.goodreads.com/user/show/{}'.format(userid))
 
@@ -102,13 +97,13 @@ while count < number_of_users+1:
             
             user_rating = str(user_ratings[0]).split(' ')[0]
             user_review = str(user_ratings[2]).split(' ')[8]
-#    
+    
             #Create final User_info list
             user_info = []
             #user_info.append([userid,user_name,user_gender,user_location,user_joined,user_shelves_count,user_about,user_image_url])
             user_info.append([userid,user_name,user_gender,user_location,user_rating,user_review,user_joined,user_shelves_count,user_about,user_image_url])
             
-#            
+            
             #Add user data to the CSV --> Append to previous CSV if exists
             file_exists = os.path.isfile('/root/goodreads/users.csv')
             header = ['userid','user_name','user_gender','user_location','user_rating','user_review','user_joined','user_shelves_count','user_about','user_image_url']
@@ -118,8 +113,7 @@ while count < number_of_users+1:
                     writer.writerow(i for i in header)
                 for j in user_info:
                     writer.writerow(j)
-
-#                
+                
             #Request the number of Books in Read shelves for each User
             review_req = Request("https://www.goodreads.com/review/list/{}.xml?key=******API KEY*******&v=2&shelf=read&per_page=5".format(userid))
             user_review = urlopen(review_req)
@@ -131,14 +125,13 @@ while count < number_of_users+1:
             #Maximum number of books for each request is 200 books, we must loop over pages
             for page_numer in range (1,math.ceil(int(user_review)/200)+1):
                 time.sleep(1)  
-#            
+                
                 try:
                     req = Request("https://www.goodreads.com/review/list/{}.xml?key=******API KEY******* &v=2&shelf=read&per_page=200".format(userid)+"&page="+str(page_numer))
                     response = urlopen(req)
                     tree = ET.parse(response)
                     root = tree.getroot()
-
-#                    
+                    
                     #Get the data for each Book
                     user_books = []
                     book_number = 0
@@ -158,10 +151,10 @@ while count < number_of_users+1:
                 #In case the page doesn't exists
                 except:
                     pass
-#                
+                
             count = count + 1
             pbar.update(1)
-#            #Add user data to the CSV --> Append to previous CSV if exists
+            #Add user data to the CSV --> Append to previous CSV if exists
             
             file_exists = os.path.isfile('/root/goodreads/userBooks.csv')
             header = ['userid','book','pub_year','rating','rating_count','description','user_book_review','author','author_id']
@@ -176,8 +169,7 @@ while count < number_of_users+1:
     except:
         pass
     
-#
-#
-#driver.quit()
-#        
+
+driver.quit()
+      
 ##
