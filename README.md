@@ -11,7 +11,7 @@ Unfortunately the API doesn't provide us with the Number of Reviews and Ratings 
 
 The user's ID is used to access the books he/she listed as **READ BOOKS**, and the Book's ID is used to gather the Data of the Book's Author. By making some minor changes, we can also access the **Currently-Reading** or **To-Read**. The code generates 2 CSV files.
 
-User profile CSV file: 
+**User profile CSV file:** 
 
 - Userid
 - Name
@@ -24,7 +24,7 @@ User profile CSV file:
 - About
 - Image_url
 
-User Books CSV file:
+**User Books CSV file:** 
 
 - Userid
 - Book
@@ -36,7 +36,33 @@ User Books CSV file:
 - Author
 - Author_id
 
+**Authors CSV file:** 
+
+- Authorid 
+- Name
+- Workcount'
+- Fan_count
+- Followers_count
+- Hometown
+- Gender
+- Big_image
+- About
+- Born
+- Died
+- Influence
+- Average_rate
+- Rating_Count
+- Review_Count
+- Books_in_goodreads
+- Genre
+- Website
+- Twitter
+
 The Only limitation in crawling data from Goodreads is time. The service doesn't let developers make requests in less than 1 seconds each time, this can be solved by running the code in parallel. Crawling 1000 users data with this method takes almost 5 hours. 
+
+### Data Understandying
+
+To be added soon. 
 
 ### Social Network Analysis on the Books and the Users
 
