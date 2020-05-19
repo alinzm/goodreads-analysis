@@ -61,11 +61,3 @@ We can Apply another similar python script to crawl Authors data. These data is 
 - Website
 - Twitter
 
-
-### Data Understandying
-
-To be added soon. 
-
-### Social Network Analysis on the Books and the Users
-
-To be added soon. 
